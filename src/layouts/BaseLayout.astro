@@ -1,0 +1,147 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  url?: string;
+  type?: string;
+}
+
+const {
+  title,
+  description,
+  image = 'https://dablin.co/og-image.png',
+  url = 'https://blog.dablin.co',
+  type = 'website',
+} = Astro.props;
+
+const fullTitle = title.includes('Dablin') ? title : `${title} - Dablin Blog`;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="https://dablin.co/favicon.png" type="image/png" />
+
+  <!-- Primary -->
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={url} />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content={type} />
+  <meta property="og:site_name" content="Dablin Blog" />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={url} />
+  <meta property="og:image" content={image} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={fullTitle} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={image} />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #f8faf8;
+      --surface: #ffffff;
+      --border: #dde8dd;
+      --border-light: #eaf3ea;
+      --text-primary: #1a2e1a;
+      --text-secondary: #6b6560;
+      --text-muted: #a09a94;
+      --accent: #2d6a2d;
+      --accent-light: #eaf3ea;
+      --tag-bg: #eef5ee;
+      --tag-text: #2d5a2d;
+    }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(250,249,247,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      height: 64px; display: flex; align-items: center; padding: 0 24px;
+    }
+    .nav-inner {
+      max-width: 1280px; margin: 0 auto; width: 100%;
+      display: flex; align-items: center;
+    }
+    .nav-logo { margin-right: 40px; display: flex; align-items: center; }
+    .nav-links { display: flex; align-items: center; gap: 4px; flex: 1; }
+    .nav-links a {
+      font-size: 14px; font-weight: 500; color: var(--text-secondary);
+      padding: 6px 12px; border-radius: 8px; transition: all 0.15s;
+    }
+    .nav-links a:hover, .nav-links a.active { background: var(--accent-light); color: var(--text-primary); }
+    .nav-actions { display: flex; align-items: center; gap: 10px; margin-left: auto; }
+    .btn-ghost {
+      font-size: 13.5px; font-weight: 500; padding: 8px 18px;
+      border-radius: 10px; cursor: pointer; background: transparent;
+      color: var(--text-secondary); border: 1px solid var(--border);
+      transition: all 0.15s; font-family: 'Roboto', sans-serif;
+    }
+    .btn-ghost:hover { background: var(--accent-light); }
+    .btn-primary {
+      font-size: 13.5px; font-weight: 500; padding: 8px 18px;
+      border-radius: 10px; cursor: pointer; background: #1a3a1a;
+      color: #fff; border: none; transition: all 0.15s;
+      font-family: 'Roboto', sans-serif;
+    }
+    .btn-primary:hover { background: #245824; }
+
+    /* FOOTER */
+    footer {
+      text-align: center; padding: 24px;
+      font-size: 12px; color: var(--text-muted);
+      border-top: 1px solid var(--border);
+    }
+    @media (max-width: 768px) { .nav-links { display: none; } }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a href="https://dablin.co" class="nav-logo">
+        <img src="https://dablin.co/logo.svg" alt="Dablin" height="32" />
+      </a>
+      <div class="nav-links">
+        <a href="https://dablin.co/ai-visibility-check">AI Visibility Check</a>
+        <a href="https://dablin.co/ai-visibility-audit">AI Visibility Audit</a>
+        <a href="https://dablin.co/seo-audit">SEO Audit</a>
+        <a href="https://dablin.co/generate-product-description">Generate</a>
+        <a href="https://blog.dablin.co" class="active">Blog</a>
+      </div>
+      <div class="nav-actions">
+        <a href="https://dablin.co" class="btn-ghost">Sign in</a>
+        <a href="https://dablin.co" class="btn-primary">Try free</a>
+      </div>
+    </div>
+  </nav>
+
+  <slot />
+
+  <footer>
+    © 2026 Dablin · <a href="https://dablin.co">dablin.co</a>
+  </footer>
+</body>
+</html>

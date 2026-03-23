@@ -1,0 +1,121 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+type Props = { post: CollectionEntry<'posts'> };
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const COVER_IMAGES: Record<string, string> = {
+  'what-is-dablin': '/images/what-is-dablin.png',
+  'backlink-quality-vs-quantity': '/images/backlink-quality-vs-quantity.png',
+};
+
+const coverImage = COVER_IMAGES[post.slug];
+const ogImage = coverImage
+  ? `https://blog.dablin.co${coverImage}`
+  : 'https://dablin.co/og-image.png';
+
+const postUrl = `https://blog.dablin.co/${post.slug}`;
+const formattedDate = new Date(post.data.date).toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' });
+---
+
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description}
+  image={ogImage}
+  url={postUrl}
+  type="article"
+>
+  <style>
+    .post-hero { background:#0f1a10; padding:56px 48px 48px; }
+    .post-hero-inner { max-width:720px; margin:0 auto; }
+    .post-tags { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:20px; }
+    .post-tag { font-size:11px; font-weight:600; background:#1a3a1c; color:#3d9e4e; border:1px solid #2d7a3a; border-radius:100px; padding:3px 12px; }
+    .post-title { font-size:38px; font-weight:800; color:white; line-height:1.2; margin-bottom:16px; letter-spacing:-0.5px; }
+    .post-meta-row { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+    .post-date { font-size:13px; color:#5a7a5e; }
+    .share-btn { display:flex; align-items:center; gap:6px; font-size:13px; font-weight:600; color:#2d6a2d; background:#eaf3ea; border:1px solid #c8e0c8; padding:8px 18px; border-radius:8px; cursor:pointer; font-family:'Roboto',sans-serif; transition:all 0.15s; }
+    .share-btn:hover { background:#d8ecd8; }
+    .post-cover { max-width:720px; margin:0 auto; padding:32px 24px 0; }
+    .post-cover img { width:100%; border-radius:12px; aspect-ratio:16/9; object-fit:cover; display:block; }
+    .post-body { max-width:720px; margin:0 auto; padding:48px 24px; }
+    .prose h2 { font-size:22px; font-weight:800; color:#1a2e1a; margin:32px 0 12px; letter-spacing:-0.5px; }
+    .prose h3 { font-size:18px; font-weight:700; color:#1a2e1a; margin:24px 0 10px; }
+    .prose p { font-size:16px; color:#3a4a3a; line-height:1.8; margin-bottom:18px; font-weight:300; }
+    .prose ul, .prose ol { padding-left:24px; margin-bottom:18px; }
+    .prose li { font-size:16px; color:#3a4a3a; line-height:1.8; margin-bottom:6px; font-weight:300; }
+    .prose strong { font-weight:700; color:#1a2e1a; }
+    .prose em { font-style:italic; color:#6b6560; }
+    .prose a { color:#2d6a2d; text-decoration:underline; }
+    .prose blockquote { border-left:3px solid #2d6a2d; padding-left:16px; margin:24px 0; color:#6b6560; font-style:italic; }
+    .prose hr { border:none; border-top:1px solid #dde8dd; margin:32px 0; }
+    .prose code { background:#eaf3ea; color:#1a2e1a; padding:2px 6px; border-radius:4px; font-size:14px; }
+    .cta-box { background:#0f1a10; border-radius:14px; padding:32px; margin:48px 0; text-align:center; }
+    .share-bottom { display:flex; justify-content:center; margin-bottom:40px; }
+    .related-list { display:flex; flex-direction:column; gap:12px; }
+    .related-label { font-size:11px; font-weight:700; color:#a09a94; text-transform:uppercase; letter-spacing:1px; margin-bottom:16px; }
+    .related-card { background:white; border:1px solid #dde8dd; border-radius:10px; padding:16px 20px; display:flex; justify-content:space-between; align-items:center; transition:border-color 0.15s; }
+    .related-card:hover { border-color:#2d6a2d; }
+    .related-title { font-size:14px; font-weight:700; color:#1a2e1a; margin-bottom:4px; }
+    .related-date { font-size:12px; color:#a09a94; }
+    @media(max-width:768px){ .post-hero { padding:40px 24px 32px; } .post-title { font-size:28px; } }
+  </style>
+
+  <!-- HERO -->
+  <div class="post-hero">
+    <div class="post-hero-inner">
+      <div class="post-tags">
+        {(post.data.tags || []).map(tag => (
+          <span class="post-tag">{tag}</span>
+        ))}
+      </div>
+      <h1 class="post-title">{post.data.title}</h1>
+      <div class="post-meta-row">
+        <span class="post-date">{formattedDate} · Dablin</span>
+        <button class="share-btn" onclick={`navigator.clipboard.writeText('${postUrl}').then(()=>{this.textContent='✓ Copied!';setTimeout(()=>this.textContent='🔗 Share',2000)})`}>
+          🔗 Share
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- COVER IMAGE -->
+  {coverImage && (
+    <div class="post-cover">
+      <img src={coverImage} alt={post.data.title} />
+    </div>
+  )}
+
+  <!-- ARTICLE BODY -->
+  <div class="post-body">
+    <div class="prose">
+      <Content />
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-box">
+      <div style="font-size:20px;font-weight:800;color:white;margin-bottom:10px;">Check your AI visibility</div>
+      <p style="font-size:14px;color:#5a7a5e;margin-bottom:20px;">See if ChatGPT, Gemini, and Claude mention your brand. Free, 20 seconds, no card needed.</p>
+      <a href="https://dablin.co" style="display:inline-block;background:#2d7a3a;color:white;padding:12px 32px;border-radius:10px;font-size:14px;font-weight:700;">
+        Try Dablin free →
+      </a>
+    </div>
+
+    <!-- SHARE BOTTOM -->
+    <div class="share-bottom">
+      <button class="share-btn" style="font-size:14px;padding:10px 24px;"
+        onclick={`navigator.clipboard.writeText('${postUrl}').then(()=>{this.textContent='✓ Link copied!';setTimeout(()=>this.textContent='🔗 Share this article',2000)})`}>
+        🔗 Share this article
+      </button>
+    </div>
+  </div>
+</BaseLayout>

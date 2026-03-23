@@ -1,0 +1,201 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('posts');
+const posts = allPosts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+
+const COVER_IMAGES: Record<string, string> = {
+  'what-is-dablin': '/images/what-is-dablin.png',
+  'backlink-quality-vs-quantity': '/images/backlink-quality-vs-quantity.png',
+};
+
+function getCover(slug: string) {
+  return COVER_IMAGES[slug] || null;
+}
+
+const featured = posts[0];
+const rest = posts.slice(1);
+const TABS = ['All', 'AI Visibility', 'SEO', 'GEO', 'Getting Started'];
+---
+
+<BaseLayout
+  title="Dablin Blog - AI Visibility, GEO and SEO guides"
+  description="Practical guides on AI visibility, GEO, and SEO for brands who want to show up where buyers are searching."
+  url="https://blog.dablin.co"
+>
+  <style>
+    .blog-header { max-width:1280px; margin:48px auto 0; padding:0 24px 32px; border-bottom:1px solid var(--border); }
+    .blog-eyebrow { font-size:13px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-muted); margin-bottom:6px; }
+    .blog-headline { font-size:38px; font-weight:800; color:var(--text-primary); letter-spacing:-1.5px; line-height:1.1; }
+    .blog-headline span { color:var(--accent); }
+    .blog-desc { margin-top:10px; font-size:15px; color:var(--text-secondary); max-width:460px; font-weight:300; }
+    .blog-tabs { display:flex; gap:6px; margin-top:24px; flex-wrap:wrap; }
+    .tab { font-size:13px; font-weight:500; padding:6px 14px; border-radius:20px; border:1px solid var(--border); background:var(--surface); color:var(--text-secondary); cursor:pointer; transition:all 0.15s; font-family:'Roboto',sans-serif; }
+    .tab:hover { border-color:var(--text-primary); color:var(--text-primary); }
+    .tab.active { background:var(--text-primary); color:#fff; border-color:var(--text-primary); }
+    .blog-grid { max-width:1280px; margin:0 auto; padding:36px 24px 80px; display:grid; grid-template-columns:300px 1fr 260px; gap:32px; align-items:start; }
+    .sidebar-left { border-right:1px solid var(--border); padding-right:32px; }
+    .sidebar-label { font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-muted); margin-bottom:20px; }
+    .article-card-side { display:flex; flex-direction:column; gap:10px; padding:20px 0; border-bottom:1px solid var(--border-light); transition:all 0.15s; }
+    .article-card-side:first-of-type { padding-top:0; }
+    .article-card-side:hover .card-title-side { color:var(--accent); }
+    .card-thumb { width:100%; aspect-ratio:16/9; border-radius:10px; overflow:hidden; background:var(--border-light); }
+    .card-thumb img { width:100%; height:100%; object-fit:cover; }
+    .card-thumb-placeholder { width:100%; height:100%; background:linear-gradient(135deg,#f5f0ea,#e8e2d9); display:flex; align-items:center; justify-content:center; }
+    .card-title-side { font-size:14.5px; font-weight:700; color:var(--text-primary); line-height:1.3; transition:color 0.15s; }
+    .card-excerpt { font-size:12.5px; color:var(--text-secondary); font-weight:300; line-height:1.5; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+    .card-meta { display:flex; align-items:center; gap:8px; font-size:11px; color:var(--text-muted); font-weight:500; text-transform:uppercase; letter-spacing:0.06em; }
+    .card-meta-dot { width:3px; height:3px; border-radius:50%; background:var(--text-muted); display:inline-block; }
+    .center-col { display:flex; flex-direction:column; }
+    .featured-article { padding-bottom:40px; border-bottom:1px solid var(--border); margin-bottom:40px; }
+    .article-tag { display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); background:var(--accent-light); border-radius:6px; padding:4px 10px; margin-bottom:14px; }
+    .featured-title { font-size:28px; font-weight:800; color:var(--text-primary); line-height:1.2; letter-spacing:-0.8px; margin-bottom:12px; max-width:580px; transition:color 0.15s; }
+    .featured-title:hover { color:var(--accent); }
+    .featured-meta { display:flex; align-items:center; gap:10px; font-size:12px; color:var(--text-muted); font-weight:500; text-transform:uppercase; letter-spacing:0.07em; margin-bottom:16px; }
+    .featured-excerpt { font-size:15px; color:var(--text-secondary); font-weight:300; line-height:1.65; max-width:560px; margin-bottom:24px; }
+    .featured-img { width:100%; border-radius:12px; aspect-ratio:16/9; object-fit:cover; }
+    .featured-img-placeholder { width:100%; border-radius:12px; aspect-ratio:16/9; background:linear-gradient(135deg,#0f2a1a,#1a3a2a); display:flex; align-items:center; justify-content:center; }
+    .article-card-center { display:flex; flex-direction:column; gap:12px; margin-bottom:40px; padding-bottom:40px; border-bottom:1px solid var(--border); }
+    .article-card-center:hover .center-title { color:var(--accent); }
+    .center-thumb { width:100%; border-radius:12px; aspect-ratio:16/9; object-fit:cover; }
+    .center-title { font-size:22px; font-weight:800; color:var(--text-primary); letter-spacing:-0.5px; line-height:1.25; transition:color 0.15s; }
+    .center-excerpt { font-size:14px; color:var(--text-secondary); font-weight:300; line-height:1.65; }
+    .center-meta { display:flex; align-items:center; gap:8px; font-size:11.5px; color:var(--text-muted); font-weight:500; text-transform:uppercase; letter-spacing:0.07em; }
+    .sidebar-right { padding-left:24px; border-left:1px solid var(--border); }
+    .sidebar-right-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; }
+    .popular-title { font-size:14px; font-weight:800; color:var(--text-primary); }
+    .popular-item { display:flex; gap:12px; padding:14px 0; border-bottom:1px solid var(--border-light); align-items:flex-start; }
+    .popular-item:hover .pop-title { color:var(--accent); }
+    .pop-thumb { width:60px; height:44px; border-radius:7px; overflow:hidden; flex-shrink:0; }
+    .pop-thumb img { width:100%; height:100%; object-fit:cover; }
+    .pop-thumb-placeholder { width:100%; height:100%; background:linear-gradient(135deg,#ede8e1,#ddd6cc); }
+    .pop-title { font-size:12.5px; font-weight:700; color:var(--text-primary); line-height:1.35; margin-bottom:5px; transition:color 0.15s; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+    .pop-meta { font-size:10px; font-weight:500; text-transform:uppercase; letter-spacing:0.07em; color:var(--text-muted); }
+    .newsletter-strip { background:#1a3a1a; padding:24px; }
+    .newsletter-inner { max-width:1280px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:24px; }
+    .newsletter-input { flex:1; max-width:280px; padding:10px 16px; border-radius:8px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.08); color:#fff; font-size:14px; font-family:'Roboto',sans-serif; outline:none; }
+    .newsletter-input::placeholder { color:rgba(255,255,255,0.4); }
+    .btn-subscribe { padding:10px 20px; background:#2d6a2d; color:#fff; border:none; border-radius:8px; font-size:14px; font-weight:600; cursor:pointer; font-family:'Roboto',sans-serif; }
+    .btn-subscribe:hover { background:#3d8a3d; }
+    @media(max-width:1024px){ .blog-grid { grid-template-columns:1fr; } .sidebar-left, .sidebar-right { display:none; } }
+    @media(max-width:600px){ .blog-headline { font-size:28px; } }
+  </style>
+
+  <!-- HEADER -->
+  <div class="blog-header">
+    <div>
+      <div class="blog-eyebrow">Dablin Blog</div>
+      <h1 class="blog-headline">AI visibility, <span>SEO</span> and GEO</h1>
+      <p class="blog-desc">Practical guides for brands who want to show up where buyers are searching.</p>
+    </div>
+    <div class="blog-tabs">
+      {TABS.map(tab => (
+        <button class={`tab ${tab === 'All' ? 'active' : ''}`}>{tab}</button>
+      ))}
+    </div>
+  </div>
+
+  <!-- GRID -->
+  <div class="blog-grid">
+
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar-left">
+      <div class="sidebar-label">Recent</div>
+      {posts.slice(0, 4).map(post => (
+        <a href={`/${post.slug}`} class="article-card-side">
+          <div class="card-thumb">
+            {getCover(post.slug)
+              ? <img src={getCover(post.slug)} alt={post.data.title} loading="lazy" />
+              : <div class="card-thumb-placeholder"></div>
+            }
+          </div>
+          <div class="card-title-side">{post.data.title}</div>
+          <div class="card-excerpt">{post.data.description}</div>
+          <div class="card-meta">
+            {new Date(post.data.date).toLocaleDateString('en-GB', { day:'numeric', month:'short' })}
+            <span class="card-meta-dot"></span>
+            Dablin
+          </div>
+        </a>
+      ))}
+    </aside>
+
+    <!-- CENTER -->
+    <main>
+      {featured && (
+        <article class="featured-article">
+          <div class="article-tag">✦ Featured</div>
+          <a href={`/${featured.slug}`}>
+            <h2 class="featured-title">{featured.data.title}</h2>
+          </a>
+          <div class="featured-meta">
+            {new Date(featured.data.date).toLocaleDateString('en-GB', { day:'numeric', month:'short' })}
+            <span class="card-meta-dot"></span>
+            Dablin
+            <span class="card-meta-dot"></span>
+            5 min read
+          </div>
+          <p class="featured-excerpt">{featured.data.description}</p>
+          {getCover(featured.slug)
+            ? <img class="featured-img" src={getCover(featured.slug)} alt={featured.data.title} />
+            : <div class="featured-img-placeholder"></div>
+          }
+        </article>
+      )}
+
+      {rest.map(post => (
+        <a href={`/${post.slug}`} style="text-decoration:none;color:inherit;">
+          <article class="article-card-center">
+            {getCover(post.slug)
+              ? <img class="center-thumb" src={getCover(post.slug)} alt={post.data.title} loading="lazy" />
+              : <div class="featured-img-placeholder" style="border-radius:12px;aspect-ratio:16/9;"></div>
+            }
+            <h3 class="center-title">{post.data.title}</h3>
+            <p class="center-excerpt">{post.data.description}</p>
+            <div class="center-meta">
+              {new Date(post.data.date).toLocaleDateString('en-GB', { day:'numeric', month:'short' })}
+              <span class="card-meta-dot"></span>
+              Dablin
+            </div>
+          </article>
+        </a>
+      ))}
+    </main>
+
+    <!-- RIGHT SIDEBAR -->
+    <aside class="sidebar-right">
+      <div class="sidebar-right-header">
+        <div class="popular-title">Popular</div>
+      </div>
+      {posts.map(post => (
+        <a href={`/${post.slug}`} class="popular-item">
+          <div class="pop-thumb">
+            {getCover(post.slug)
+              ? <img src={getCover(post.slug)} alt={post.data.title} loading="lazy" />
+              : <div class="pop-thumb-placeholder"></div>
+            }
+          </div>
+          <div>
+            <div class="pop-title">{post.data.title}</div>
+            <div class="pop-meta">{new Date(post.data.date).toLocaleDateString('en-GB', { day:'numeric', month:'short' })} · Dablin</div>
+          </div>
+        </a>
+      ))}
+    </aside>
+  </div>
+
+  <!-- NEWSLETTER -->
+  <div class="newsletter-strip">
+    <div class="newsletter-inner">
+      <div>
+        <strong style="font-size:16px;font-weight:800;color:#fff;letter-spacing:-0.3px;">Stay ahead of AI search.</strong>
+        <p style="font-size:13px;color:rgba(255,255,255,0.5);margin-top:3px;font-weight:300;">Weekly insights on AI visibility, SEO, and GEO. No spam.</p>
+      </div>
+      <div style="display:flex;gap:10px;align-items:center;">
+        <input type="email" class="newsletter-input" placeholder="your@email.com" />
+        <button class="btn-subscribe">Subscribe</button>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

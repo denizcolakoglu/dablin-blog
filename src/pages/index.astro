@@ -125,7 +125,7 @@ const TABS = ['All', 'AI Visibility', 'SEO', 'GEO', 'Getting Started'];
     <!-- CENTER -->
     <main>
       {featured && (
-        <article class="featured-article">
+        <article class="featured-article filterable" data-tags={(featured.data.tags || []).join(',')}>
           <div class="article-tag">✦ Featured</div>
           <a href={`/${featured.slug}`}>
             <h2 class="featured-title">{featured.data.title}</h2>
@@ -146,7 +146,7 @@ const TABS = ['All', 'AI Visibility', 'SEO', 'GEO', 'Getting Started'];
       )}
 
       {rest.map(post => (
-        <a href={`/${post.slug}`} style="text-decoration:none;color:inherit;">
+        <a href={`/${post.slug}`} style="text-decoration:none;color:inherit;" class="filterable" data-tags={(post.data.tags || []).join(',')}>
           <article class="article-card-center">
             {getCover(post.slug)
               ? <img class="center-thumb" src={getCover(post.slug)} alt={post.data.title} loading="lazy" />
@@ -199,4 +199,25 @@ const TABS = ['All', 'AI Visibility', 'SEO', 'GEO', 'Getting Started'];
       </div>
     </div>
   </div>
+
+  <script>
+    const tabs = document.querySelectorAll('.tab');
+    const cards = document.querySelectorAll('.filterable');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const selected = (tab.textContent || '').trim();
+        cards.forEach(card => {
+          const tags = (card as HTMLElement).dataset.tags || '';
+          if (selected === 'All' || tags.split(',').some(t => t.trim() === selected)) {
+            (card as HTMLElement).style.display = '';
+          } else {
+            (card as HTMLElement).style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
 </BaseLayout>

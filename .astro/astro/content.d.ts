@@ -159,6 +159,13 @@ declare module 'astro:content' {
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
+"google-march-2026-update.md": {
+	id: "google-march-2026-update.md";
+  slug: "google-march-2026-update";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
 "what-is-dablin.md": {
 	id: "what-is-dablin.md";
   slug: "what-is-dablin";

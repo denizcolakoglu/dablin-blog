@@ -2,9 +2,8 @@
 title: "Google March 2026: What the Fastest Core Update in History Means for Your Site"
 description: "The March 2026 core update rolled out in under 20 hours. Here's what it targeted, why it moved so fast, and what founders need to fix before it costs them traffic."
 date: "2026-03-26"
-author: "Dablin"
 tags: ["SEO", "Google", "GEO", "AI Visibility"]
-cover: "/images/google-march-2026-update.png"
+image: "/images/google-march-2026-update.png"
 ---
 
 The March 2026 Google core update finished rolling out in under 20 hours.

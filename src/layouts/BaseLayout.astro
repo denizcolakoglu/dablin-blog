@@ -123,6 +123,9 @@ const fullTitle = title.includes('Dablin') ? title : `${title} - Dablin Blog`;
       min-width: 270px; z-index: 200; margin-top: 4px;
     }
     .nav-dropdown:hover .nav-dropdown-menu { display: flex; flex-direction: column; }
+    .nav-dropdown-menu::before {
+      content: ''; position: absolute; top: -12px; left: 0; right: 0; height: 12px;
+    }
     .nav-dropdown-item {
       display: flex; align-items: flex-start; gap: 12px;
       padding: 10px 12px; border-radius: 9px; text-decoration: none;

@@ -88,12 +88,6 @@ const fullTitle = title.includes('Dablin') ? title : `${title} - Dablin Blog`;
     }
     .nav-logo { display: flex; align-items: center; }
     .nav-links { display: flex; align-items: center; gap: 28px; }
-    .nav-links a {
-      font-size: 15px; font-weight: 500; color: #2a3d2b;
-      text-decoration: none; transition: color 0.15s;
-    }
-    .nav-links a:hover { color: #1a7a3a; }
-    .nav-links a.active { color: #1a7a3a; font-weight: 700; }
     .nav-actions { display: flex; align-items: center; gap: 10px; }
     .btn-ghost {
       font-size: 14px; font-weight: 500; padding: 9px 20px;
@@ -112,6 +106,39 @@ const fullTitle = title.includes('Dablin') ? title : `${title} - Dablin Blog`;
     }
     .btn-primary:hover { background: #2d9a4e; }
 
+    /* DROPDOWN */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-trigger {
+      font-size: 15px; font-weight: 500; color: #2a3d2b;
+      background: none; border: none; cursor: pointer;
+      display: flex; align-items: center; gap: 5px; padding: 4px 0;
+      font-family: 'Roboto', sans-serif;
+    }
+    .nav-dropdown-trigger .chevron { font-size: 10px; color: #9ab09c; margin-top: 1px; }
+    .nav-dropdown-menu {
+      display: none; position: absolute; top: calc(100% + 12px);
+      left: 50%; transform: translateX(-50%);
+      background: white; border: 1px solid #eef2ee; border-radius: 14px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1); padding: 8px;
+      min-width: 270px; z-index: 200;
+    }
+    .nav-dropdown:hover .nav-dropdown-menu { display: flex; flex-direction: column; }
+    .nav-dropdown-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 10px 12px; border-radius: 9px; text-decoration: none;
+      transition: background 0.15s;
+    }
+    .nav-dropdown-item:hover { background: #eef8f0; }
+    .nav-dropdown-icon { font-size: 14px; font-weight: 700; color: #1a7a3a; flex-shrink: 0; width: 20px; text-align: center; margin-top: 1px; }
+    .nav-dropdown-label { font-size: 13px; font-weight: 600; color: #0d1f0e; margin-bottom: 2px; }
+    .nav-dropdown-desc { font-size: 12px; color: #4a6b4c; line-height: 1.4; }
+    .nav-plain {
+      font-size: 15px; font-weight: 500; color: #2a3d2b;
+      text-decoration: none; transition: color 0.15s;
+    }
+    .nav-plain:hover { color: #1a7a3a; }
+    .nav-plain.active { color: #1a7a3a; font-weight: 700; }
+
     /* FOOTER */
     footer {
       background: #0a1a0b;
@@ -119,41 +146,18 @@ const fullTitle = title.includes('Dablin') ? title : `${title} - Dablin Blog`;
       border-top: 1px solid rgba(255,255,255,0.06);
     }
     .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 48px;
-      max-width: 1280px;
-      margin: 0 auto 48px;
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px; max-width: 1280px; margin: 0 auto 48px;
     }
-    .footer-brand-desc {
-      font-size: 13px; color: rgba(255,255,255,0.45);
-      line-height: 1.65; max-width: 260px; margin: 0 0 24px;
-    }
+    .footer-brand-desc { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.65; max-width: 260px; margin: 0 0 24px; }
     .footer-socials { display: flex; gap: 10px; }
-    .footer-social-btn {
-      width: 34px; height: 34px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 8px; display: flex; align-items: center;
-      justify-content: center; text-decoration: none; transition: background 0.2s;
-    }
+    .footer-social-btn { width: 34px; height: 34px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: background 0.2s; }
     .footer-social-btn:hover { background: rgba(255,255,255,0.15); }
-    .footer-col-label {
-      font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.3);
-      text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 16px;
-    }
+    .footer-col-label { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 16px; }
     .footer-col-links { display: flex; flex-direction: column; gap: 10px; }
-    .footer-col-links a {
-      font-size: 13px; color: rgba(255,255,255,0.55);
-      text-decoration: none; transition: color 0.15s;
-    }
+    .footer-col-links a { font-size: 13px; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.15s; }
     .footer-col-links a:hover { color: white; }
-    .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.07);
-      padding-top: 24px; max-width: 1280px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 12px;
-    }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.07); padding-top: 24px; max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
     .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
 
     @media (max-width: 900px) {
@@ -175,11 +179,67 @@ const fullTitle = title.includes('Dablin') ? title : `${title} - Dablin Blog`;
         <img src="https://dablin.co/logo.svg" alt="Dablin" height="44" />
       </a>
       <div class="nav-links">
-        <a href="https://dablin.co/ai-visibility-check">AI Visibility Check</a>
-        <a href="https://dablin.co/ai-visibility-audit">AI Visibility Audit</a>
-        <a href="https://dablin.co/seo-audit">SEO Audit</a>
-        <a href="https://dablin.co/pricing">Pricing</a>
-        <a href="https://blog.dablin.co" class="active">Blog</a>
+
+        <!-- AI Visibility dropdown -->
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-trigger">AI Visibility <span class="chevron">▾</span></button>
+          <div class="nav-dropdown-menu">
+            <a href="https://dablin.co/ai-visibility-audit" class="nav-dropdown-item">
+              <span class="nav-dropdown-icon">⌕</span>
+              <div><div class="nav-dropdown-label">AI Visibility Audit</div><div class="nav-dropdown-desc">12 checks for AI engine discoverability</div></div>
+            </a>
+            <a href="https://dablin.co/ai-visibility-check" class="nav-dropdown-item">
+              <span class="nav-dropdown-icon">◎</span>
+              <div><div class="nav-dropdown-label">AI Visibility Check</div><div class="nav-dropdown-desc">See if ChatGPT, Gemini & Claude mention you</div></div>
+            </a>
+            <a href="https://dashboard.dablin.co/query-check" class="nav-dropdown-item">
+              <span class="nav-dropdown-icon">↗</span>
+              <div><div class="nav-dropdown-label">AI Query Check</div><div class="nav-dropdown-desc">Run custom queries across AI engines</div></div>
+            </a>
+          </div>
+        </div>
+
+        <!-- SEO Expert dropdown -->
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-trigger">SEO Expert <span class="chevron">▾</span></button>
+          <div class="nav-dropdown-menu">
+            <a href="https://dablin.co/seo-audit" class="nav-dropdown-item">
+              <span class="nav-dropdown-icon">✓</span>
+              <div><div class="nav-dropdown-label">SEO Audit</div><div class="nav-dropdown-desc">18-point SEO check with AI fixes</div></div>
+            </a>
+            <a href="https://dashboard.dablin.co/search-console" class="nav-dropdown-item">
+              <span class="nav-dropdown-icon">📊</span>
+              <div><div class="nav-dropdown-label">Google Search Console</div><div class="nav-dropdown-desc">Index status, vitals and query data</div></div>
+            </a>
+            <a href="https://dashboard.dablin.co" class="nav-dropdown-item">
+              <span class="nav-dropdown-icon">⊞</span>
+              <div><div class="nav-dropdown-label">SEO/GEO Dashboard</div><div class="nav-dropdown-desc">Your full visibility kanban board</div></div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Pricing -->
+        <a href="https://dablin.co/pricing" class="nav-plain">Pricing</a>
+
+        <!-- Resources dropdown -->
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-trigger">Resources <span class="chevron">▾</span></button>
+          <div class="nav-dropdown-menu">
+            <a href="https://blog.dablin.co" class="nav-dropdown-item active">
+              <span class="nav-dropdown-icon">✍</span>
+              <div><div class="nav-dropdown-label">Blog</div><div class="nav-dropdown-desc">AI visibility, GEO and SEO guides</div></div>
+            </a>
+            <a href="https://www.linkedin.com/company/dablin" target="_blank" rel="noopener noreferrer" class="nav-dropdown-item">
+              <span class="nav-dropdown-icon" style="font-size:13px; font-weight:800;">in</span>
+              <div><div class="nav-dropdown-label">Dablin LinkedIn</div><div class="nav-dropdown-desc">Follow us for SEO & AI insights</div></div>
+            </a>
+            <a href="https://medium.com/dablin" target="_blank" rel="noopener noreferrer" class="nav-dropdown-item">
+              <span class="nav-dropdown-icon" style="font-size:13px; font-weight:800;">M</span>
+              <div><div class="nav-dropdown-label">Dablin Medium</div><div class="nav-dropdown-desc">In-depth articles and guides</div></div>
+            </a>
+          </div>
+        </div>
+
       </div>
       <div class="nav-actions">
         <a href="https://dablin.co" class="btn-ghost">Sign in</a>

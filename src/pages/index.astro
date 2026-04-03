@@ -9,6 +9,7 @@ const COVER_IMAGES: Record<string, string> = {
   'what-is-dablin': '/images/what-is-dablin.png',
   'backlink-quality-vs-quantity': '/images/backlink-quality-vs-quantity.png',
   'google-march-2026-update': '/images/google-march-2026-update.png',
+  'ai-visibility-problem-solo-entrepreneurs': '/images/ai-visibility-problem-solo-entrepreneurs.png',
 };
 
 function getCover(slug: string) {
@@ -81,13 +82,6 @@ const TABS = ['All', 'AI Visibility', 'SEO', 'GEO', 'Getting Started'];
     .btn-subscribe:hover { background:#3d8a3d; }
     @media(max-width:1024px){ .blog-grid { grid-template-columns:1fr; } .sidebar-left, .sidebar-right { display:none; } }
     @media(max-width:600px){ .blog-headline { font-size:28px; } }
-    @media(max-width:768px){
-      .newsletter-strip { padding:24px 20px; }
-      .newsletter-inner { flex-direction:column; align-items:flex-start; gap:16px; }
-      .newsletter-form { flex-direction:column; width:100%; gap:10px; }
-      .newsletter-input { max-width:100%; width:100%; box-sizing:border-box; }
-      .btn-subscribe { width:100%; }
-    }
   </style>
 
   <!-- HEADER -->
@@ -200,7 +194,7 @@ const TABS = ['All', 'AI Visibility', 'SEO', 'GEO', 'Getting Started'];
         <strong style="font-size:16px;font-weight:800;color:#fff;letter-spacing:-0.3px;">Stay ahead of AI search.</strong>
         <p style="font-size:13px;color:rgba(255,255,255,0.5);margin-top:3px;font-weight:300;">Weekly insights on AI visibility, SEO, and GEO. No spam.</p>
       </div>
-      <div class="newsletter-form" style="display:flex;gap:10px;align-items:center;">
+      <div style="display:flex;gap:10px;align-items:center;">
         <input type="email" class="newsletter-input" placeholder="your@email.com" />
         <button class="btn-subscribe">Subscribe</button>
       </div>

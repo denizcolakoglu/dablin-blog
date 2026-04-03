@@ -81,6 +81,12 @@ const TABS = ['All', 'AI Visibility', 'SEO', 'GEO', 'Getting Started'];
     .btn-subscribe:hover { background:#3d8a3d; }
     @media(max-width:1024px){ .blog-grid { grid-template-columns:1fr; } .sidebar-left, .sidebar-right { display:none; } }
     @media(max-width:600px){ .blog-headline { font-size:28px; } }
+    @media(max-width:768px){
+      .newsletter-inner { flex-direction:column; align-items:flex-start; gap:16px; }
+      .newsletter-input { max-width:100%; width:100%; box-sizing:border-box; }
+      .btn-subscribe { width:100%; }
+      .newsletter-strip { padding:24px 20px; }
+    }
   </style>
 
   <!-- HEADER -->

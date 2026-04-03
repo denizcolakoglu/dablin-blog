@@ -1,7 +1,7 @@
 ---
 title: "The AI Visibility Problem And How to Fix It"
 description: "Most brands are invisible to AI engines like ChatGPT and Gemini and have no idea. Here's how Dablin's six tools help solo founders and small marketing teams fix their AI visibility and SEO in one place."
-date: 2026-04-03
+date: "2026-04-03"
 tags: ["AI Visibility", "GEO", "SEO", "Getting Started"]
 cover: "/images/ai-visibility-problem-solo-entrepreneurs.png"
 ---

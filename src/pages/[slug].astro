@@ -27,6 +27,60 @@ const ogImage = coverImage
   : 'https://dablin.co/og-image.png';
 
 const postUrl = `https://blog.dablin.co/${post.slug}`;
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": post.data.title,
+  "description": post.data.description,
+  "url": postUrl,
+  "datePublished": new Date(post.data.date).toISOString(),
+  "dateModified": new Date(post.data.date).toISOString(),
+  "author": {
+    "@type": "Organization",
+    "name": "Dablin",
+    "url": "https://dablin.co"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dablin",
+    "url": "https://dablin.co",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dablin.co/logo.svg"
+    }
+  },
+  "image": ogImage,
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": postUrl
+  }
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://dablin.co"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://blog.dablin.co"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": post.data.title,
+      "item": postUrl
+    }
+  ]
+};
 const formattedDate = new Date(post.data.date).toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' });
 ---
 
@@ -71,6 +125,10 @@ const formattedDate = new Date(post.data.date).toLocaleDateString('en-GB', { day
     .related-date { font-size:12px; color:#a09a94; }
     @media(max-width:768px){ .post-hero { padding:40px 24px 32px; } .post-title { font-size:28px; } }
   </style>
+
+  <!-- JSON-LD Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 
   <!-- HERO -->
   <div class="post-hero">

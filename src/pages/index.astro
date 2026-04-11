@@ -19,13 +19,75 @@ function getCover(slug: string) {
 const featured = posts[0];
 const rest = posts.slice(1);
 const TABS = ['All', 'AI Visibility', 'SEO', 'GEO', 'Getting Started'];
+
+// Schema for blog homepage
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Dablin Blog",
+  "description": "Practical guides on AI visibility, GEO, and SEO for brands who want to show up where buyers are searching.",
+  "url": "https://blog.dablin.co",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dablin",
+    "url": "https://dablin.co",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dablin.co/logo.svg"
+    }
+  }
+};
+
+const blogSchema = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Dablin Blog",
+  "description": "Practical guides on AI visibility, GEO, and SEO for brands who want to show up where buyers are searching.",
+  "url": "https://blog.dablin.co",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dablin",
+    "url": "https://dablin.co"
+  },
+  "blogPost": posts.slice(0, 10).map(post => ({
+    "@type": "BlogPosting",
+    "headline": post.data.title,
+    "description": post.data.description,
+    "url": `https://blog.dablin.co/${post.slug}`,
+    "datePublished": new Date(post.data.date).toISOString()
+  }))
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://dablin.co"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://blog.dablin.co"
+    }
+  ]
+};
 ---
 
 <BaseLayout
   title="Dablin Blog - AI Visibility, GEO and SEO guides"
   description="Practical guides on AI visibility, GEO, and SEO for brands who want to show up where buyers are searching."
   url="https://blog.dablin.co"
+  articleSchema={websiteSchema}
+  breadcrumbSchema={breadcrumbSchema}
 >
+  <!-- Additional Blog schema -->
+  <script type="application/ld+json" set:html={JSON.stringify(blogSchema)} />
+
   <style>
     .blog-header { max-width:1280px; margin:48px auto 0; padding:0 24px 32px; border-bottom:1px solid var(--border); }
     .blog-eyebrow { font-size:13px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-muted); margin-bottom:6px; }

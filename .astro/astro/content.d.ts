@@ -152,6 +152,13 @@ declare module 'astro:content' {
 
 	type ContentEntryMap = {
 		"posts": {
+"ai-visibility-problem-solo-entrepreneurs.md": {
+	id: "ai-visibility-problem-solo-entrepreneurs.md";
+  slug: "ai-visibility-problem-solo-entrepreneurs";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
 "backlink-quality-vs-quantity.md": {
 	id: "backlink-quality-vs-quantity.md";
   slug: "backlink-quality-vs-quantity";

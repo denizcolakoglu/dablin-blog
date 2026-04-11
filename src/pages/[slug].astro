@@ -81,6 +81,7 @@ const breadcrumbSchema = {
     }
   ]
 };
+
 const formattedDate = new Date(post.data.date).toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' });
 ---
 
@@ -90,11 +91,9 @@ const formattedDate = new Date(post.data.date).toLocaleDateString('en-GB', { day
   image={ogImage}
   url={postUrl}
   type="article"
+  articleSchema={articleSchema}
+  breadcrumbSchema={breadcrumbSchema}
 >
-  <!-- JSON-LD Schema in head -->
-  <script slot="head" type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
-  <script slot="head" type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
-
   <style>
     .post-hero { background:#0f1a10; padding:56px 48px 48px; }
     .post-hero-inner { max-width:720px; margin:0 auto; }

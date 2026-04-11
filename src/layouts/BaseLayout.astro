@@ -5,6 +5,8 @@ interface Props {
   image?: string;
   url?: string;
   type?: string;
+  articleSchema?: object;
+  breadcrumbSchema?: object;
 }
 
 const {
@@ -13,6 +15,8 @@ const {
   image = 'https://dablin.co/og-image.png',
   url = 'https://blog.dablin.co',
   type = 'website',
+  articleSchema,
+  breadcrumbSchema,
 } = Astro.props;
 
 const fullTitle = title.includes('Dablin') ? title : `${title} - Dablin Blog`;
@@ -46,13 +50,18 @@ const fullTitle = title.includes('Dablin') ? title : `${title} - Dablin Blog`;
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={image} />
 
+  <!-- JSON-LD Schema -->
+  {articleSchema && (
+    <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  )}
+  {breadcrumbSchema && (
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  )}
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300&display=swap" rel="stylesheet" />
-
-  <!-- Head slot for JSON-LD and other per-page head content -->
-  <slot name="head" />
 
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }

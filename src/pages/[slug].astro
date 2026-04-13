@@ -96,14 +96,15 @@ const formattedDate = new Date(post.data.date).toLocaleDateString('en-GB', { day
   breadcrumbSchema={breadcrumbSchema}
 >
   <style>
-    .post-hero { background:#0f1a10; padding:56px 48px 48px; }
+    .post-hero { background:#ffffff; border-bottom:1px solid #e8ede8; padding:52px 48px 44px; }
     .post-hero-inner { max-width:720px; margin:0 auto; }
-    .post-tags { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:20px; }
-    .post-tag { font-size:11px; font-weight:600; background:#1a3a1c; color:#3d9e4e; border:1px solid #2d7a3a; border-radius:100px; padding:3px 12px; }
-    .post-title { font-size:38px; font-weight:800; color:white; line-height:1.2; margin-bottom:16px; letter-spacing:-0.5px; }
+    .post-tags { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:18px; }
+    .post-tag { font-size:11px; font-weight:600; background:#eef5ee; color:#2d6a2d; border-radius:100px; padding:4px 12px; }
+    .post-title { font-size:36px; font-weight:800; color:#1a2e1a; line-height:1.2; margin:0 0 20px; letter-spacing:-0.5px; }
     .post-meta-row { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
-    .post-date { font-size:13px; color:#5a7a5e; }
-    .share-btn { display:flex; align-items:center; gap:6px; font-size:13px; font-weight:600; color:#2d6a2d; background:#eaf3ea; border:1px solid #c8e0c8; padding:8px 18px; border-radius:8px; cursor:pointer; font-family:'Roboto',sans-serif; transition:all 0.15s; }
+    .post-meta-left { display:flex; align-items:center; gap:10px; font-size:13px; color:#a09a94; }
+    .post-meta-dot { color:#ddd; }
+    .share-btn { display:flex; align-items:center; gap:6px; font-size:13px; font-weight:600; color:#2d6a2d; background:#eef5ee; border:1px solid #c8e0c8; padding:8px 16px; border-radius:8px; cursor:pointer; font-family:'Roboto',sans-serif; transition:all 0.15s; }
     .share-btn:hover { background:#d8ecd8; }
     .post-cover { max-width:720px; margin:0 auto; padding:32px 24px 0; }
     .post-cover img { width:100%; border-radius:12px; aspect-ratio:16/9; object-fit:cover; display:block; }
@@ -128,7 +129,7 @@ const formattedDate = new Date(post.data.date).toLocaleDateString('en-GB', { day
     .cta-btn:hover { background:#3a9a4a; }
     .post-footer { border-top:1px solid #dde8dd; padding-top:28px; margin-top:8px; display:flex; align-items:center; justify-content:space-between; margin-bottom:40px; }
     .post-footer-meta { font-size:13px; color:#a09a94; }
-    .share-btn-bottom { display:flex; align-items:center; gap:6px; font-size:13px; font-weight:600; color:#2d6a2d; background:#eaf3ea; border:1px solid #c8e0c8; padding:9px 18px; border-radius:8px; cursor:pointer; font-family:'Roboto',sans-serif; transition:all 0.15s; }
+    .share-btn-bottom { display:flex; align-items:center; gap:6px; font-size:13px; font-weight:600; color:#2d6a2d; background:#eef5ee; border:1px solid #c8e0c8; padding:9px 18px; border-radius:8px; cursor:pointer; font-family:'Roboto',sans-serif; transition:all 0.15s; }
     .share-btn-bottom:hover { background:#d8ecd8; }
     @media(max-width:600px){ .cta-box { flex-direction:column; align-items:flex-start; } }
     @media(max-width:768px){ .post-hero { padding:40px 24px 32px; } .post-title { font-size:28px; } }
@@ -144,9 +145,16 @@ const formattedDate = new Date(post.data.date).toLocaleDateString('en-GB', { day
       </div>
       <h1 class="post-title">{post.data.title}</h1>
       <div class="post-meta-row">
-        <span class="post-date">{formattedDate} · Dablin</span>
-        <button class="share-btn" onclick={`navigator.clipboard.writeText('${postUrl}').then(()=>{this.textContent='✓ Copied!';setTimeout(()=>this.textContent='🔗 Share',2000)})`}>
-          🔗 Share
+        <div class="post-meta-left">
+          <span>Dablin</span>
+          <span class="post-meta-dot">·</span>
+          <span>{formattedDate}</span>
+          <span class="post-meta-dot">·</span>
+          <span>5 min read</span>
+        </div>
+        <button class="share-btn" onclick={`navigator.clipboard.writeText('${postUrl}').then(()=>{this.textContent='✓ Copied!';setTimeout(()=>this.textContent='Share',2000)})`}>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          Share
         </button>
       </div>
     </div>
@@ -179,8 +187,9 @@ const formattedDate = new Date(post.data.date).toLocaleDateString('en-GB', { day
     <div class="post-footer">
       <span class="post-footer-meta">{formattedDate} · Dablin</span>
       <button class="share-btn-bottom"
-        onclick={`navigator.clipboard.writeText('${postUrl}').then(()=>{this.textContent='✓ Copied!';setTimeout(()=>this.textContent='🔗 Share',2000)})`}>
-        🔗 Share
+        onclick={`navigator.clipboard.writeText('${postUrl}').then(()=>{this.textContent='✓ Copied!';setTimeout(()=>this.textContent='Share',2000)})`}>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        Share
       </button>
     </div>
   </div>

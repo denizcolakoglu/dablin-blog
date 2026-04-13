@@ -1,7 +1,7 @@
 ---
 title: "What is Information Gain and Why Google March 2026 Penalises Thin Content"
 description: "Google's March 2026 core update targets pages that add nothing new. Here's what Information Gain means, how Google measures it, and how to fix thin content before it tanks your rankings."
-date: 2026-04-13
+date: "2026-04-13"
 tags: ["SEO", "Getting Started"]
 author: "Deniz"
 authorLinkedIn: "https://www.linkedin.com/in/deniz-colakoglu-30a7327/"

@@ -54,33 +54,130 @@ The definition of thin content has expanded. It's no longer just about word coun
 
 ## Google March 2026 Checklist
 
-Use this checklist before publishing any page. If you can't tick at least 8 of these 12 items, your page is at risk.
+Use this interactive checklist before publishing any page. Tick at least 8 of 12 items to pass.
 
-**Content signals**
-- [ ] Word count is 600+ for informational content
-- [ ] Contains at least one statistic, data point, or specific number
-- [ ] Includes named examples (real companies, tools, or people)
-- [ ] Has original insight or analysis not found in competing pages
+<div class="checklist-wrapper" style="background:#fff;border:1px solid #dde8dd;border-radius:16px;padding:24px;margin:32px 0;font-family:'Roboto',sans-serif;">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+    <div>
+      <div style="font-size:18px;font-weight:700;color:#1a2e1a;margin:0 0 4px;">Google March 2026 checklist</div>
+      <div style="font-size:13px;color:#6b6560;margin:0;">Tick at least 8 of 12 items before publishing</div>
+    </div>
+    <div style="display:flex;align-items:baseline;gap:4px;">
+      <span id="cl-score" style="font-size:32px;font-weight:700;color:#1a2e1a;">0</span>
+      <span style="font-size:14px;color:#6b6560;">/ 12</span>
+    </div>
+  </div>
+  <div style="height:8px;background:#eef3ee;border-radius:4px;margin-bottom:24px;overflow:hidden;">
+    <div id="cl-progress" style="height:100%;width:0%;background:#d85a30;border-radius:4px;transition:all 0.3s ease;"></div>
+  </div>
+  <div style="margin-bottom:20px;">
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#a09a94;margin-bottom:12px;">Content signals</div>
+    <label style="display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid #eef3ee;cursor:pointer;">
+      <input type="checkbox" class="cl-check" style="width:20px;height:20px;margin-top:2px;accent-color:#2d7a3a;cursor:pointer;">
+      <div><div style="font-size:14px;font-weight:600;color:#1a2e1a;margin-bottom:2px;">600+ words</div><div style="font-size:13px;color:#6b6560;line-height:1.4;">Minimum word count for informational content</div></div>
+    </label>
+    <label style="display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid #eef3ee;cursor:pointer;">
+      <input type="checkbox" class="cl-check" style="width:20px;height:20px;margin-top:2px;accent-color:#2d7a3a;cursor:pointer;">
+      <div><div style="font-size:14px;font-weight:600;color:#1a2e1a;margin-bottom:2px;">Contains statistics or data</div><div style="font-size:13px;color:#6b6560;line-height:1.4;">At least one specific number, percentage, or data point</div></div>
+    </label>
+    <label style="display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid #eef3ee;cursor:pointer;">
+      <input type="checkbox" class="cl-check" style="width:20px;height:20px;margin-top:2px;accent-color:#2d7a3a;cursor:pointer;">
+      <div><div style="font-size:14px;font-weight:600;color:#1a2e1a;margin-bottom:2px;">Named examples</div><div style="font-size:13px;color:#6b6560;line-height:1.4;">Real companies, tools, or people mentioned by name</div></div>
+    </label>
+    <label style="display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid #eef3ee;cursor:pointer;">
+      <input type="checkbox" class="cl-check" style="width:20px;height:20px;margin-top:2px;accent-color:#2d7a3a;cursor:pointer;">
+      <div><div style="font-size:14px;font-weight:600;color:#1a2e1a;margin-bottom:2px;">Original insight</div><div style="font-size:13px;color:#6b6560;line-height:1.4;">Analysis or perspective not found in competing pages</div></div>
+    </label>
+  </div>
+  <div style="margin-bottom:20px;">
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#a09a94;margin-bottom:12px;">Author signals</div>
+    <label style="display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid #eef3ee;cursor:pointer;">
+      <input type="checkbox" class="cl-check" style="width:20px;height:20px;margin-top:2px;accent-color:#2d7a3a;cursor:pointer;">
+      <div><div style="font-size:14px;font-weight:600;color:#1a2e1a;margin-bottom:2px;">Author name visible</div><div style="font-size:13px;color:#6b6560;line-height:1.4;">Byline shows who wrote the content</div></div>
+    </label>
+    <label style="display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid #eef3ee;cursor:pointer;">
+      <input type="checkbox" class="cl-check" style="width:20px;height:20px;margin-top:2px;accent-color:#2d7a3a;cursor:pointer;">
+      <div><div style="font-size:14px;font-weight:600;color:#1a2e1a;margin-bottom:2px;">Author bio or credentials</div><div style="font-size:13px;color:#6b6560;line-height:1.4;">Brief background establishing expertise</div></div>
+    </label>
+    <label style="display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid #eef3ee;cursor:pointer;">
+      <input type="checkbox" class="cl-check" style="width:20px;height:20px;margin-top:2px;accent-color:#2d7a3a;cursor:pointer;">
+      <div><div style="font-size:14px;font-weight:600;color:#1a2e1a;margin-bottom:2px;">Publication date</div><div style="font-size:13px;color:#6b6560;line-height:1.4;">Date when content was first published</div></div>
+    </label>
+    <label style="display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid #eef3ee;cursor:pointer;">
+      <input type="checkbox" class="cl-check" style="width:20px;height:20px;margin-top:2px;accent-color:#2d7a3a;cursor:pointer;">
+      <div><div style="font-size:14px;font-weight:600;color:#1a2e1a;margin-bottom:2px;">Last updated date</div><div style="font-size:13px;color:#6b6560;line-height:1.4;">Shows when content was refreshed (if applicable)</div></div>
+    </label>
+  </div>
+  <div style="margin-bottom:20px;">
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#a09a94;margin-bottom:12px;">Structural signals</div>
+    <label style="display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid #eef3ee;cursor:pointer;">
+      <input type="checkbox" class="cl-check" style="width:20px;height:20px;margin-top:2px;accent-color:#2d7a3a;cursor:pointer;">
+      <div><div style="font-size:14px;font-weight:600;color:#1a2e1a;margin-bottom:2px;">Original visuals</div><div style="font-size:13px;color:#6b6560;line-height:1.4;">Custom images, charts, diagrams, or screenshots</div></div>
+    </label>
+    <label style="display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid #eef3ee;cursor:pointer;">
+      <input type="checkbox" class="cl-check" style="width:20px;height:20px;margin-top:2px;accent-color:#2d7a3a;cursor:pointer;">
+      <div><div style="font-size:14px;font-weight:600;color:#1a2e1a;margin-bottom:2px;">Structured elements</div><div style="font-size:13px;color:#6b6560;line-height:1.4;">Comparison tables, frameworks, or interactive tools</div></div>
+    </label>
+    <label style="display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid #eef3ee;cursor:pointer;">
+      <input type="checkbox" class="cl-check" style="width:20px;height:20px;margin-top:2px;accent-color:#2d7a3a;cursor:pointer;">
+      <div><div style="font-size:14px;font-weight:600;color:#1a2e1a;margin-bottom:2px;">3+ internal links</div><div style="font-size:13px;color:#6b6560;line-height:1.4;">Links to related content on your site</div></div>
+    </label>
+    <label style="display:flex;align-items:flex-start;gap:12px;padding:12px 0;cursor:pointer;">
+      <input type="checkbox" class="cl-check" style="width:20px;height:20px;margin-top:2px;accent-color:#2d7a3a;cursor:pointer;">
+      <div><div style="font-size:14px;font-weight:600;color:#1a2e1a;margin-bottom:2px;">Specific meta description</div><div style="font-size:13px;color:#6b6560;line-height:1.4;">Unique to this page, not generic boilerplate</div></div>
+    </label>
+  </div>
+  <div id="cl-status" style="padding:16px;border-radius:12px;text-align:center;margin-bottom:16px;background:#faece7;">
+    <div id="cl-status-title" style="font-size:14px;font-weight:700;color:#d85a30;">At risk</div>
+    <div id="cl-status-desc" style="font-size:13px;color:#6b6560;margin-top:4px;">Your page needs more Information Gain signals</div>
+  </div>
+  <a href="https://dablin.co/seo-audit" target="_blank" rel="noopener" style="display:block;width:100%;padding:14px;background:#2d7a3a;color:#fff;text-align:center;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;">Run full SEO audit on Dablin →</a>
+</div>
 
-**Author signals**
-- [ ] Author name is visible on the page
-- [ ] Author bio or credentials are included
-- [ ] Publication date is displayed
-- [ ] Last updated date shown (if content was refreshed)
+<script>
+(function(){
+  const checks = document.querySelectorAll('.cl-check');
+  const score = document.getElementById('cl-score');
+  const progress = document.getElementById('cl-progress');
+  const status = document.getElementById('cl-status');
+  const statusTitle = document.getElementById('cl-status-title');
+  const statusDesc = document.getElementById('cl-status-desc');
 
-**Structural signals**
-- [ ] Contains original images, charts, or diagrams
-- [ ] Uses comparison tables, frameworks, or interactive elements
-- [ ] Has 3+ internal links to related content
-- [ ] Meta description is specific to this page (not generic)
+  function update() {
+    const count = [...checks].filter(c => c.checked).length;
+    score.textContent = count;
+    progress.style.width = (count / 12 * 100) + '%';
+    
+    if (count >= 10) {
+      progress.style.background = '#3b6d11';
+      status.style.background = '#eaf3de';
+      statusTitle.style.color = '#3b6d11';
+      statusTitle.textContent = 'Strong';
+      statusDesc.textContent = 'Your page has excellent Information Gain signals';
+    } else if (count >= 8) {
+      progress.style.background = '#185fa5';
+      status.style.background = '#e6f1fb';
+      statusTitle.style.color = '#185fa5';
+      statusTitle.textContent = 'Good';
+      statusDesc.textContent = 'Your page meets minimum Information Gain requirements';
+    } else if (count >= 5) {
+      progress.style.background = '#ba7517';
+      status.style.background = '#faeeda';
+      statusTitle.style.color = '#ba7517';
+      statusTitle.textContent = 'Needs work';
+      statusDesc.textContent = 'Your page is borderline - add more signals before publishing';
+    } else {
+      progress.style.background = '#d85a30';
+      status.style.background = '#faece7';
+      statusTitle.style.color = '#d85a30';
+      statusTitle.textContent = 'At risk';
+      statusDesc.textContent = 'Your page needs more Information Gain signals';
+    }
+  }
 
-**Bonus signals that help**
-- [ ] Links to primary sources or citations
-- [ ] Includes first-party data or original research
-- [ ] FAQ section with specific answers
-- [ ] Author has verifiable expertise (LinkedIn, portfolio, etc.)
-
-Run your pages through [Dablin's SEO Audit](https://dablin.co/seo-audit) to automatically check for Information Gain issues and get AI-generated fixes for each problem found.
+  checks.forEach(c => c.addEventListener('change', update));
+})();
+</script>
 
 ## How to check if your pages have Information Gain
 

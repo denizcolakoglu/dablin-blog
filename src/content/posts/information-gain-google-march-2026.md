@@ -5,6 +5,7 @@ date: "2026-04-13"
 tags: ["SEO", "Getting Started"]
 author: "Deniz"
 authorLinkedIn: "https://www.linkedin.com/in/deniz-colakoglu-30a7327/"
+image: "/images/information-gain-google-march-2026.png"
 ---
 
 If your traffic dropped after March 2026, you're not alone. Google's fastest core update in history rolled out in under 20 hours - and it hit harder than anyone expected.
@@ -50,6 +51,36 @@ The definition of thin content has expanded. It's no longer just about word coun
 **Outdated "evergreen" content.** Pages that haven't been meaningfully updated in years, especially in fast-moving fields. If your "complete guide to SEO" still talks about keyword density, Google sees it as low-value regardless of how well it once ranked.
 
 **Thin supporting pages.** Category pages, tag pages, and hub pages with little content of their own. These used to rank on internal link authority alone. Now they need to provide standalone value.
+
+## Google March 2026 Checklist
+
+Use this checklist before publishing any page. If you can't tick at least 8 of these 12 items, your page is at risk.
+
+**Content signals**
+- [ ] Word count is 600+ for informational content
+- [ ] Contains at least one statistic, data point, or specific number
+- [ ] Includes named examples (real companies, tools, or people)
+- [ ] Has original insight or analysis not found in competing pages
+
+**Author signals**
+- [ ] Author name is visible on the page
+- [ ] Author bio or credentials are included
+- [ ] Publication date is displayed
+- [ ] Last updated date shown (if content was refreshed)
+
+**Structural signals**
+- [ ] Contains original images, charts, or diagrams
+- [ ] Uses comparison tables, frameworks, or interactive elements
+- [ ] Has 3+ internal links to related content
+- [ ] Meta description is specific to this page (not generic)
+
+**Bonus signals that help**
+- [ ] Links to primary sources or citations
+- [ ] Includes first-party data or original research
+- [ ] FAQ section with specific answers
+- [ ] Author has verifiable expertise (LinkedIn, portfolio, etc.)
+
+Run your pages through [Dablin's SEO Audit](https://dablin.co/seo-audit) to automatically check for Information Gain issues and get AI-generated fixes for each problem found.
 
 ## How to check if your pages have Information Gain
 

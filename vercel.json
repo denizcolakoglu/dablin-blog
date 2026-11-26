@@ -1,5 +1,9 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "framework": "astro"
+  "framework": "astro",
+  "redirects": [
+    { "source": "/", "destination": "https://dablin.co/blog", "permanent": true },
+    { "source": "/:path*", "destination": "https://dablin.co/blog", "permanent": true }
+  ]
 }
